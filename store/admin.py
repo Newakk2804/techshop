@@ -1,13 +1,26 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Category, Product, Brand
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug")
+    list_display = ("name", "slug", "image_preview")
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
     ordering = ("name",)
+    readonly_fields = ("image_preview",)
+
+    fieldsets = ((None, {"fields": ("name", "slug", "image", "image_preview")}),)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                "<img src='{}' style='max-height: 100px;'/>", obj.image.url
+            )
+        return "-"
+
+    image_preview.short_description = "Превью изображения"
 
 
 @admin.register(Brand)
@@ -30,11 +43,17 @@ class ProductAdmin(admin.ModelAdmin):
         "color",
         "rating",
         "created_at",
+        "image_preview",
     )
     list_filter = ("brand", "category", "color", "created_at", "updated_at")
     search_fields = ("name", "brand__name", "category__name", "description")
     prepopulated_fields = {"slug": ("name",)}
-    readonly_fields = ("created_at", "updated_at", "final_price_display")
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+        "final_price_display",
+        "image_preview",
+    )
     list_editable = ("price", "discount", "color", "rating")
     ordering = ("-created_at",)
     date_hierarchy = "created_at"
@@ -43,7 +62,17 @@ class ProductAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             None,
-            {"fields": ("name", "slug", "brand", "category", "description", "image")},
+            {
+                "fields": (
+                    "name",
+                    "slug",
+                    "brand",
+                    "category",
+                    "description",
+                    "image",
+                    "image_preview",
+                )
+            },
         ),
         ("Ценообразование", {"fields": ("price", "discount", "final_price_display")}),
         ("Характеристики", {"fields": ("color", "rating")}),
@@ -54,3 +83,12 @@ class ProductAdmin(admin.ModelAdmin):
         return f"{obj.final_price():.2f} BYN"
 
     final_price_display.short_description = "Цена со скидкой"
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="max-height: 100px;"/>', obj.image.url
+            )
+        return "-"
+
+    image_preview.short_description = "Превью изображения"

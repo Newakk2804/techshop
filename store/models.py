@@ -4,6 +4,9 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название")
     slug = models.SlugField(unique=True, blank=True)
+    image = models.ImageField(
+        upload_to="category/", blank=True, null=True, verbose_name="Изображение"
+    )
 
     class Meta:
         verbose_name = "Категория"
