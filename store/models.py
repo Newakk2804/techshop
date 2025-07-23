@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal, ROUND_HALF_UP
 
 
 class Category(models.Model):
@@ -68,8 +69,9 @@ class Product(models.Model):
 
     def final_price(self):
         if self.price is None or self.discount is None:
-            return 0
-        return self.price * (1 - self.discount / 100)
+            return Decimal("0.00")
+        final = self.price * (Decimal("1") - Decimal(self.discount) / Decimal("100"))
+        return final.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
     def __str__(self):
         return self.name

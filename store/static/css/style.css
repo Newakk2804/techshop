@@ -872,11 +872,19 @@ textarea.input {
 }
 
 .product .product-img {
-  position: relative;
+  width: 100%;            /* или фиксированная ширина */
+  height: 200px;          /* задаёшь одинаковую высоту */
+  overflow: hidden;
+  border-radius: 8px;     /* опционально — скругление */
+  background-color: #f8f8f8; /* опционально — фон */
 }
 
 .product .product-img>img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;     /* обрезать, сохраняя пропорции */
+  object-position: center; /* по центру */
+  display: block;
 }
 
 .product .product-img .product-label {
@@ -920,6 +928,7 @@ textarea.input {
 .product .product-body .product-name {
   text-transform: uppercase;
   font-size: 14px;
+  min-height: 100px;
 }
 
 .product .product-body .product-name>a {
