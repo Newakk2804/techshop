@@ -1029,6 +1029,23 @@ textarea.input {
   transition: 0.2s all;
 }
 
+.product-btns .quick-view > button {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background: transparent;
+  border: none;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.product-btns .quick-view > button:hover {
+  background-color: #e4e7ed;
+  color: #d10024;
+  border-radius: 20px;
+}
+
 .product .product-body .product-btns a > button:hover {
   background-color: #e4e7ed;
   color: #d10024;

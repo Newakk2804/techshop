@@ -1,4 +1,5 @@
 {% load static %}
+{% load favorites_tags %}
 <!-- product -->
 <div class="product">
   <div class="product-img">
@@ -30,9 +31,14 @@
     </div>
     <div class="product-btns">
       <a href="#" class="quick-view">
-      <button class="add-to-wishlist">
-        <i class="fa fa-heart-o"></i>
-      </button>
+        <button class="add-to-wishlist" data-product-id="{{ product.id }}">
+          {% is_favorited product request.user as favorite_status %}
+          {% if favorite_status %}
+          <i class="fa fa-heart text-danger"></i>
+          {% else %}
+          <i class="fa fa-heart-o"></i>
+          {% endif %}
+        </button>
       </a>
       <a href="{% url "store:detail_product" product.slug %}" class="quick-view">
         <button class="quick-view">

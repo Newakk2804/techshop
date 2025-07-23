@@ -1,4 +1,4 @@
-{% extends "store/base.html" %} {% load static %} {% block main %}
+{% extends "store/base.html" %} {% load static %} {% load favorites_tags %} {% block main %}
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
   <!-- container -->
@@ -73,11 +73,18 @@
             </button>
           </div>
 
-          <ul class="product-btns">
-            <li>
-              <a href="#"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
-            </li>
-          </ul>
+          <div class="product-btns">
+            <a href="#" class="quick-view">
+              <button class="add-to-wishlist" data-product-id="{{ product.id }}">
+                {% is_favorited product request.user as favorite_status %}
+                {% if favorite_status %}
+                <i class="fa fa-heart text-danger"> Избранное</i>
+                {% else %}
+                <i class="fa fa-heart-o"> Избранное</i>
+                {% endif %}
+              </button>
+            </a>
+          </div>
 
           <ul class="product-links">
             <li>Категория:</li>
