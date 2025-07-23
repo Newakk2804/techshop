@@ -791,7 +791,7 @@ textarea.input {
 ===========================================================*/
 
 #hot-deal.section {
-  padding: 60px 0px;
+  padding: 140px 0px;
   margin: 30px 0px;
   background-color: #E4E7ED;
   background-image: url('../img/hotdeal.png');
@@ -859,7 +859,7 @@ textarea.input {
 
 .product {
   position: relative;
-  margin: 15px 0px;
+  margin: 60px 0px;
   -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
   box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
   -webkit-transition: 0.2s all;
@@ -1050,7 +1050,11 @@ textarea.input {
   transform: translateY(100%);
 }
 
-.product .add-to-cart .add-to-cart-btn {
+.btn-clear-filter{
+  margin-top: 20px;
+}
+
+.product .add-to-cart .add-to-cart-btn, .btn-clear-filter {
   position: relative;
   border: 2px solid transparent;
   height: 40px;
@@ -1064,7 +1068,7 @@ textarea.input {
   transition: 0.2s all;
 }
 
-.product .add-to-cart .add-to-cart-btn>i {
+.product .add-to-cart .add-to-cart-btn>i{
   position: absolute;
   left: 0;
   top: 0;
@@ -1076,7 +1080,7 @@ textarea.input {
   visibility: hidden;
 }
 
-.product .add-to-cart .add-to-cart-btn:hover {
+.product .add-to-cart .add-to-cart-btn:hover, .btn-clear-filter:hover {
   background-color: #FFF;
   color: #D10024;
   border-color: #D10024;
@@ -1087,6 +1091,8 @@ textarea.input {
   opacity: 1;
   visibility: visible;
 }
+
+
 
 /*----------------------------*\
 	Widget product

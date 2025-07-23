@@ -1,0 +1,9 @@
+<div class="row">
+    {% for product in products %}
+      <div class="col-md-4 col-xs-6">
+        {% include "store/components/_card_product.html" %}
+      </div>
+    {% empty %}
+      <p>Нет товаров по выбранным фильтрам.</p>
+    {% endfor %}
+  </div>

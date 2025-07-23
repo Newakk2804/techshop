@@ -1,0 +1,117 @@
+{% extends "store/base.html" %} {% load static %} {% block main %}
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      <div id="aside" class="col-md-3">
+        <!-- aside Widget -->
+        <form id="filter-form">
+          <div class="aside">
+            <h3 class="aside-title">Категории</h3>
+            <div class="checkbox-filter">
+              {% for category in categories %}
+              <div class="input-checkbox">
+                <input
+                  type="checkbox"
+                  id="category-{{ category.pk }}"
+                  name="category"
+                  value="{{ category.pk }}"
+                />
+                <label for="category-{{ category.pk }}">
+                  <span></span>
+                  {{ category.name }}
+                  <small>({{ category.products.count }})</small>
+                </label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- /aside Widget -->
+
+          <!-- aside Widget -->
+          <div class="aside">
+            <h3 class="aside-title">Цена</h3>
+            <div class="price-filter">
+              <div class="input-number price-min">
+                <input id="price-min" type="number" name="min_price" />
+                <span class="qty-up">+</span>
+                <span class="qty-down">-</span>
+              </div>
+              <span>-</span>
+              <div class="input-number price-max">
+                <input id="price-max" type="number" name="max_price" />
+                <span class="qty-up">+</span>
+                <span class="qty-down">-</span>
+              </div>
+            </div>
+          </div>
+          <!-- /aside Widget -->
+
+          <!-- aside Widget -->
+          <div class="aside">
+            <h3 class="aside-title">Бренды</h3>
+            <div class="checkbox-filter">
+              {% for brand in brands %} {% if brand.products.count > 0 %}
+              <div class="input-checkbox">
+                <input
+                  type="checkbox"
+                  id="brand-{{ brand.pk }}"
+                  name="brand"
+                  value="{{ brand.pk }}"
+                />
+                <label for="brand-{{ brand.pk }}">
+                  <span></span>
+                  {{ brand.name }}
+                  <small>({{ brand.products.count }})</small>
+                </label>
+              </div>
+              {% endif %} {% endfor %}
+            </div>
+          </div>
+          <!-- /aside Widget -->
+          <button type="button" id="reset-filters" class="btn-clear-filter">
+            Сбросить фильтры
+          </button>
+        </form>
+      </div>
+      <!-- /ASIDE -->
+
+      <!-- STORE -->
+      <div id="store" class="col-md-9">
+        <!-- store products -->
+        <div id="product-list">
+          <div class="row">
+            <!-- product -->
+            {% for product in products %}
+            <div class="col-md-4 col-xs-6">{% include "store/components/_card_product.html" %}</div>
+            {% endfor %}
+            <!-- /product -->
+          </div>
+        </div>
+        <!-- /store products -->
+
+        <!-- store bottom filter -->
+        <div class="store-filter clearfix">
+          <ul class="store-pagination">
+            <li class="active">1</li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li>
+              <a href="#"><i class="fa fa-angle-right"></i></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /store bottom filter -->
+      </div>
+      <!-- /STORE -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+{% endblock main %}
