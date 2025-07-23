@@ -18,7 +18,7 @@
                   type="checkbox"
                   id="category-{{ category.pk }}"
                   name="category"
-                  value="{{ category.pk }}"
+                  value="{{ category.pk }}" {% if category.pk|stringformat:"s" in selected_category_ids %}checked{% endif %}
                 />
                 <label for="category-{{ category.pk }}">
                   <span></span>

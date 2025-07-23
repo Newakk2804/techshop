@@ -17,7 +17,7 @@
           </div>
           <div class="shop-body">
             <h3>{{ category.name }}<br /></h3>
-            <a href="#" class="cta-btn">Купить <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{% url 'store:products' %}?category={{ category.id }}" class="cta-btn">Купить <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
