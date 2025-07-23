@@ -384,7 +384,6 @@ textarea.input {
   display: inline-block;
   font-size: 12px;
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 #breadcrumb .breadcrumb-tree li+li {
@@ -982,7 +981,7 @@ textarea.input {
   background-color: #E4E7ED;
 }
 
-.product .product-body .product-btns>button {
+.product .product-body .product-btns a>button {
   position: relative;
   width: 40px;
   height: 40px;
@@ -993,7 +992,7 @@ textarea.input {
   transition: 0.2s all;
 }
 
-.product .product-body .product-btns>button:hover {
+.product .product-body .product-btns a>button:hover {
   background-color: #E4E7ED;
   color: #D10024;
   border-radius: 50%;

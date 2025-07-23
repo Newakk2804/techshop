@@ -29,12 +29,16 @@
       <i class="fa fa-star"></i>
     </div>
     <div class="product-btns">
+      <a href="#" class="quick-view">
       <button class="add-to-wishlist">
-        <i class="fa fa-heart-o"></i><span class="tooltipp">Добавить в избранное</span>
+        <i class="fa fa-heart-o"></i>
       </button>
-      <button class="quick-view">
-        <i class="fa fa-eye"></i><span class="tooltipp">Просмотреть</span>
-      </button>
+      </a>
+      <a href="{% url "store:detail_product" product.slug %}" class="quick-view">
+        <button class="quick-view">
+          <i class="fa fa-eye"></i>
+        </button>
+      </a>
     </div>
   </div>
   <div class="add-to-cart">

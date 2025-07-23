@@ -50,3 +50,18 @@ def product_filter_ajax(request):
     context = {"products": products}
 
     return render(request, "store/components/_product_list.html", context)
+
+
+def detail_product(request, product_slug):
+    product = Product.objects.get(slug=product_slug)
+    related_products = Product.objects.filter(category__name=product.category).exclude(
+        name=product.name
+    )
+    print(related_products)
+    print(product.category)
+    context = {
+        "product": product,
+        "related_products": related_products,
+    }
+
+    return render(request, "store/detail_product.html", context)
