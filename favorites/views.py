@@ -1,9 +1,19 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.shortcuts import render
 import json
 from .models import Favorite
 from store.models import Product
+
+
+def favorite_list_view(request):
+    favorites = Favorite.objects.select_related("product").filter(user=request.user)
+    context = {
+        "favorites": favorites,
+    }
+
+    return render(request, "favorites/favorites.html", context)
 
 
 @require_POST
