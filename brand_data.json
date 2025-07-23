@@ -1,0 +1,66 @@
+[
+{
+  "model": "store.brand",
+  "pk": 1,
+  "fields": {
+    "name": "Apple",
+    "slug": "apple"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 2,
+  "fields": {
+    "name": "Samsung",
+    "slug": "samsung"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 3,
+  "fields": {
+    "name": "Huawei",
+    "slug": "huawei"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 4,
+  "fields": {
+    "name": "Xiaomi",
+    "slug": "xiaomi"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 5,
+  "fields": {
+    "name": "MSI",
+    "slug": "msi"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 6,
+  "fields": {
+    "name": "ASUS",
+    "slug": "asus"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 7,
+  "fields": {
+    "name": "Lenovo",
+    "slug": "lenovo"
+  }
+},
+{
+  "model": "store.brand",
+  "pk": 8,
+  "fields": {
+    "name": "JBL",
+    "slug": "jbl"
+  }
+}
+]

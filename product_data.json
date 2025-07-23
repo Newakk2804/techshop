@@ -1,0 +1,146 @@
+[
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "name": "Ноутбук Lenovo IdeaPad Slim 3 (82XQ00B5PS)",
+    "slug": "noutbuk-lenovo-ideapad-slim-3-82xq00b5ps",
+    "brand": 7,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Леново Глобал Технолоджи, 23/F., Линкольн Хаус, Тхайку-плейс, 979 Кингс Роуд, Куорри-Бей, Гонконг, Китай / Lenovo PC HK Limited, 23/F., Lincoln House, Taikoo Place, 979 King's Road, Quarry Bay, Hong K",
+    "price": "1400.00",
+    "discount": 0,
+    "color": "silver",
+    "rating": 0.0,
+    "category": 1,
+    "image": "products/ideapadslim382xq00b5ps_lenovo_8914166_660c2abd4fe26.jpg",
+    "created_at": "2025-07-23T04:59:34.300Z",
+    "updated_at": "2025-07-23T04:59:34.300Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "name": "Ноутбук Huawei MateBook D 14 MDF-X (53013XFP)",
+    "slug": "noutbuk-huawei-matebook-d-14-mdf-x-53013xfp",
+    "brand": 3,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Хуавей Теч Инвестмент Ко, Ltd, RM 3610-12, 36 этаж, Центр, № 99, Квинс Роад Централ, Гонконг / Huawei Tech. Investment Co., Ltd, RM 3610-12, 36-th Floor, The Center, No 99, Queen's Road Central, Hong-Kong",
+    "price": "2200.00",
+    "discount": 0,
+    "color": "gray",
+    "rating": 0.0,
+    "category": 1,
+    "image": "products/matebookd14mdfx53013xfp_huawei_65c4852c648a7.jpg",
+    "created_at": "2025-07-23T05:04:44.931Z",
+    "updated_at": "2025-07-23T05:04:44.931Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "name": "Беспроводные наушники JBL Tune 520BT / JBLT520BTBLK (черный)",
+    "slug": "besprovodnye-naushniki-jbl-tune-520bt-jblt520btblk",
+    "brand": 8,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Херман Интернейшнл Индастриз Инкорпорейтид. 400 Атлантика 1500, Стамфорд, CT, 06901 США / Harman International Industries Incorporated Company Information. 400 Atlantic St Ste 1500. Stamford, CT, 06901 United States",
+    "price": "150.00",
+    "discount": 0,
+    "color": "black",
+    "rating": 0.0,
+    "category": 3,
+    "image": "products/tune520btjblt520btblk_jbl_6566d736a0958.jpg",
+    "created_at": "2025-07-23T05:06:12.439Z",
+    "updated_at": "2025-07-23T05:06:12.439Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "name": "Беспроводные наушники Xiaomi Redmi Buds 6 Play M2420E1 / BHR8773GL (белый)",
+    "slug": "besprovodnye-naushniki-xiaomi-redmi-buds-6-play-m2",
+    "brand": 4,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Сяоми Корпорэйшин, Вангинг Вест Роуд, Чаойанг Дистрикт, А 50-1, Стоун Уолд Билдинг, Блок А, Китай / Xiaomi Corporation. Wangjing West Road, Chaoyang District, A 50 -1 volumes Stone World Building 12, Block A, China",
+    "price": "50.00",
+    "discount": 0,
+    "color": "white",
+    "rating": 0.0,
+    "category": 3,
+    "image": "products/000.jpg",
+    "created_at": "2025-07-23T05:07:03.412Z",
+    "updated_at": "2025-07-23T05:07:03.412Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "name": "Смартфон Xiaomi Redmi 13 8GB/256GB (черный, c NFC)",
+    "slug": "smartfon-xiaomi-redmi-13-8gb256gb-chernyj-c-nfc",
+    "brand": 4,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Сяоми Корпорэйшин, Вангинг Вест Роуд, Чаойанг Дистрикт, А 50-1, Стоун Уолд Билдинг, Блок А, Китай / Xiaomi Corporation. Wangjing West Road, Chaoyang District, A 50 -1 volumes Stone World Building 12, Block A, China",
+    "price": "600.00",
+    "discount": 0,
+    "color": "black",
+    "rating": 0.0,
+    "category": 2,
+    "image": "products/redmi138gb256gbcnfcmidnightblack_xiaomi_9069021_6660319d84b39.jpg",
+    "created_at": "2025-07-23T05:08:09.203Z",
+    "updated_at": "2025-07-23T05:08:09.203Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "name": "Смартфон Samsung Galaxy A06 4GB/128GB (черный)",
+    "slug": "smartfon-samsung-galaxy-a06-4gb128gb-chernyj",
+    "brand": 2,
+    "description": "Расширьте возможности благодаря большому экрану Galaxy A06 диагональю 6,7 дюйма. Теперь просматривать контент стало еще удобнее благодаря плавной прокрутке с частотой 60 Гц и дисплею с U-вырезом и TFT-матрицей.",
+    "price": "330.00",
+    "discount": 0,
+    "color": "black",
+    "rating": 0.0,
+    "category": 2,
+    "image": "products/galaxya064gb128gbsma065fzkgcau_samsung_9487058_45fc3e1f1481ef40038505f8873c69b0.jpg",
+    "created_at": "2025-07-23T05:09:16.568Z",
+    "updated_at": "2025-07-23T05:09:16.568Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "name": "Планшет Xiaomi Redmi Pad SE 8GB/256GB / 23073RPBFG (графитовый серый)",
+    "slug": "planshet-xiaomi-redmi-pad-se-8gb256gb-23073rpbfg-g",
+    "brand": 4,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Сяоми Корпорэйшин, Вангинг Вест Роуд, Чаойанг Дистрикт, А 50-1, Стоун Уолд Билдинг, Блок А, Китай / Xiaomi Corporation. Wangjing West Road, Chaoyang District, A 50 -1 volumes Stone World Building 12, Block A, China",
+    "price": "780.00",
+    "discount": 0,
+    "color": "gray",
+    "rating": 0.0,
+    "category": 4,
+    "image": "products/redmipadse8gb256gb23073rpbfg_xiaomi_8633883_654dd0ca7f9ef.jpg",
+    "created_at": "2025-07-23T05:10:13.664Z",
+    "updated_at": "2025-07-23T05:10:13.664Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "name": "Планшет Huawei MatePad SE 11\" 4GB/128GB LTE AGS6-L09 / 53014AYL (серый)",
+    "slug": "planshet-huawei-matepad-se-11-4gb128gb-lte-ags6-l0",
+    "brand": 3,
+    "description": "Страна производства: Китай\r\n\r\nПроизводитель: Хуавей Теч Инвестмент Ко, Ltd, RM 3610-12, 36 этаж, Центр, № 99, Квинс Роад Централ, Гонконг / Huawei Tech. Investment Co., Ltd, RM 3610-12, 36-th Floor, The Center, No 99, Queen's Road Central, Hong-Kong",
+    "price": "550.00",
+    "discount": 0,
+    "color": "gray",
+    "rating": 0.0,
+    "category": 4,
+    "image": "products/matepadse114gb128gblteags6l09_huawei_9212490_66c4508e7de9f.jpg",
+    "created_at": "2025-07-23T05:11:09.992Z",
+    "updated_at": "2025-07-23T05:11:09.992Z"
+  }
+}
+]

@@ -1,0 +1,38 @@
+[
+{
+  "model": "store.category",
+  "pk": 1,
+  "fields": {
+    "name": "Ноутбук",
+    "slug": "noutbuk",
+    "image": "category/laptop.jpg"
+  }
+},
+{
+  "model": "store.category",
+  "pk": 2,
+  "fields": {
+    "name": "Телефон",
+    "slug": "telefon",
+    "image": "category/telephone.jpg"
+  }
+},
+{
+  "model": "store.category",
+  "pk": 3,
+  "fields": {
+    "name": "Наушники",
+    "slug": "naushniki",
+    "image": "category/pods.jpg"
+  }
+},
+{
+  "model": "store.category",
+  "pk": 4,
+  "fields": {
+    "name": "Планшет",
+    "slug": "planshet",
+    "image": "category/tablet.jpg"
+  }
+}
+]

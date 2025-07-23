@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "store.apps.StoreConfig",
     "accounts.apps.AccountsConfig",
+    "favorites.apps.FavoritesConfig",
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,8 @@ STATICFILES_DIRS = [BASE_DIR / "store/static"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "store:index"
