@@ -3,14 +3,12 @@ from .models import Category, Brand, Product
 
 
 def index(request):
-    categories = Category.objects.all()
     products = Product.objects.all().order_by("-created_at")[:5]
-    context = {"categories": categories, "new_products": products}
+    context = {"new_products": products}
     return render(request, "store/index.html", context)
 
 
 def products_all(request):
-    categories = Category.objects.all()
     products = Product.objects.all().order_by("-created_at")
     brands = Brand.objects.all()
 
@@ -19,7 +17,6 @@ def products_all(request):
         products = products.filter(category_id__in=selected_category_ids)
 
     context = {
-        "categories": categories,
         "products": products,
         "brands": brands,
         "selected_category_ids": selected_category_ids,

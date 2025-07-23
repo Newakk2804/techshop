@@ -1,9 +1,11 @@
 {% load static %}
+{% load category_tags %}
 <div class="section">
   <!-- container -->
   <div class="container">
     <!-- row -->
     <div class="row justify-content-center">
+      {% get_all_categories as categories %}
       {% for category in categories %}
       <!-- shop -->
       <div class="col-md-3 col-xs-4">
