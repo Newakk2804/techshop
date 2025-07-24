@@ -52,7 +52,7 @@
         <!-- /LOGO -->
 
         <!-- SEARCH BAR -->
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="header-search">
             <form method="get" action="{% url "store:products" %}">
               <input class="input" name="q" placeholder="Поиск" value="{{ request.GET.q|default:'' }}" />
@@ -64,7 +64,7 @@
 
         {% if request.user.is_authenticated %}
         <!-- ACCOUNT -->
-        <div class="col-md-3 clearfix">
+        <div class="col-md-4 clearfix">
           <div class="header-ctn">
             <!-- Wishlist -->
             <div>
@@ -85,6 +85,16 @@
               </a>
             </div>
             <!-- /Cart -->
+
+            <!-- Orders -->
+            <div>
+              <a href="#">
+                <i class="fa fa-list"></i>
+                <span>Заказы</span>
+                <div class="qty" id="order-count">0</div>
+              </a>
+            </div>
+            <!-- /Orders -->
             {% endif %}
           </div>
         </div>
