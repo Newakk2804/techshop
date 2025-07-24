@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Category, Brand, Product
+from django.db.models import Q
+from .models import Brand, Product
 
 
 def index(request):
@@ -16,10 +17,17 @@ def products_all(request):
     if selected_category_ids:
         products = products.filter(category_id__in=selected_category_ids)
 
+    query = request.GET.get("q", "")
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+
     context = {
         "products": products,
         "brands": brands,
         "selected_category_ids": selected_category_ids,
+        "query": query,
     }
     return render(request, "store/store.html", context)
 
