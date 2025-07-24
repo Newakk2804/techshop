@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "store.apps.StoreConfig",
     "accounts.apps.AccountsConfig",
     "favorites.apps.FavoritesConfig",
+    "carts.apps.CartsConfig",
 ]
 
 MIDDLEWARE = [
