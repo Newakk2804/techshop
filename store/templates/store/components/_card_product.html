@@ -1,7 +1,7 @@
 {% load static %}
 {% load favorites_tags %}
 <!-- product -->
-<div class="product">
+<div class="product" id="favorite-product-{{ product.id }}">
   <div class="product-img">
     {% if product.image %}
     <img src="{{ product.image.url }}" alt="" />
@@ -17,7 +17,7 @@
     <h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
     {% if product.discount %}
     <h4 class="product-price">
-      {{ product.final_price }} BYN<del class="product-old-price">{{ product.price }} BYN</del>
+      {{ product.final_price }} BYN <del class="product-old-price">{{ product.price }} BYN</del>
     </h4>
     {% else %}
     <h4 class="product-price">{{ product.final_price }} BYN</h4>

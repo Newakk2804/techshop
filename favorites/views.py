@@ -36,3 +36,9 @@ def toggle_wishlist(request):
         return JsonResponse({"status": "removed"})
     else:
         return JsonResponse({"status": "added"})
+
+
+@login_required
+def favorite_count(request):
+    count = Favorite.objects.filter(user=request.user).count()
+    return JsonResponse({"count": count})

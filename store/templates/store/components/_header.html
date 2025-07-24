@@ -76,7 +76,7 @@
               <a href="{% url "favorite:list" %}">
                 <i class="fa fa-heart-o"></i>
                 <span>Избранное</span>
-                <div class="qty">2</div>
+                <div id="favorite-count" class="qty">{{ favorite_count|default:0 }}</div>
               </a>
             </div>
             <!-- /Wishlist -->

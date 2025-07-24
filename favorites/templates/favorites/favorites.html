@@ -20,7 +20,7 @@
 <!-- /BREADCRUMB -->
 <div class="container" style="margin-bottom: 60px">
   {% if favorites %}
-  <div class="row">
+  <div class="row content-cards">
     {% for item in favorites %}
     <div class="col-sm-6 col-md-4" style="margin-bottom: 30px">
       {% include "store/components/_card_product.html" with product=item.product %}
@@ -28,15 +28,8 @@
     {% endfor %}
   </div>
   {% else %}
-  <div class="text-center" style="padding: 60px 0">
+  <div class="text-center" style="padding: 76px 0">
     <h4 class="text-muted">У вас пока нет избранных товаров.</h4>
-    <a
-      href="{% url 'store:products_all' %}"
-      class="btn btn-primary"
-      style="margin-top: 20px; border-radius: 25px"
-    >
-      Перейти в каталог
-    </a>
   </div>
   {% endif %}
 </div>
