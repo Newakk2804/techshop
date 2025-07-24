@@ -1,12 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  {% include "store/components/_head.html" %} 
+  {% include 'store/components/_head.html' %}
   <body>
-      {% include "store/components/_header.html" %}
-      {% block main %}
-      {% endblock main %}
-      {% include "store/components/_footer.html" %}
-      {% include "store/components/_scripts.html" %}
+    <div id="toast-container" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+  min-width: 250px;
+"></div>
+    {% include 'store/components/_header.html' %}
+    {% block main %}
+
+    {% endblock %}
+    {% include 'store/components/_footer.html' %}
+    {% include 'store/components/_scripts.html' %}
   </body>
 </html>

@@ -1,0 +1,95 @@
+{% extends 'store/base.html' %}
+{% block main %}
+  <!-- BREADCRUMB -->
+  <div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb-tree">
+            <li>
+              <a href="javascript:history.back()" class="btn btn-outline-secondary">← Назад</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /BREADCRUMB -->
+  <div class="container content-cart" style="margin-top: 50px; margin-bottom: 80px;">
+    {% if cart_items %}
+      <h3 class="text-center" style="margin-bottom: 30px;">Моя корзина</h3>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Товар</th>
+              <th class="text-center" style="width: 120px;">Цена</th>
+              <th class="text-center" style="width: 120px;">Количество</th>
+              <th class="text-center" style="width: 140px;">Сумма</th>
+              <th class="text-center" style="width: 80px;">Удалить</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+              <tr class="cart-item-row">
+                <td>
+                  <div class="media">
+                    <div class="media-left">
+                      <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="media-object" style="width: 80px;" />
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{ item.product.name }}</h4>
+                      <small class="text-muted">{{ item.product.description|truncatewords:10 }}</small>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <strong>{{ item.product.price }} BYN</strong>
+                </td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-center">
+                  <strong>{{ item.get_total_price }} BYN</strong>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-danger btn-sm remove-from-cart-btn" data-cart-item-id="{{ item.id }}"><i class="fa fa-trash"></i></button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row" style="margin-top: 40px;">
+        <div class="col-md-6 col-md-offset-3">
+          <div style="
+      background: linear-gradient(135deg, #f9f9f9, #ffffff);
+      border-radius: 20px;
+      padding: 30px 35px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    ">
+            <h3 style="margin-bottom: 10px;"><strong id="cart-total-quantity">{{ total_quantity }}</strong> товаров в корзине</h3>
+            <h4 class="text-muted" style="font-size: 18px;">Итого к оплате:</h4>
+            <h2 style="font-weight: bold; color: #28a745;" id="cart-total-price">{{ total_price }} <small>BYN</small></h2>
+
+            <a href="#" class="btn btn-success btn-lg btn-block" style="
+        border-radius: 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin-top: 20px;
+      ">Перейти к оформлению</a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="text-center" style="padding: 8px 0;">
+        <h4 class="text-muted">Ваша корзина пуста.</h4>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

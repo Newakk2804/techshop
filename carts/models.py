@@ -17,4 +17,4 @@ class CartItem(models.Model):
         return f"{self.product.name} x {self.quantity}"
     
     def get_total_price(self):
-        return self.product.final_price * self.quantity
+        return self.product.final_price() * self.quantity
