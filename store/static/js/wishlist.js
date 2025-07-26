@@ -20,9 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
           if (data.status === 'added') {
             this.querySelector('i').classList.remove('fa-heart-o');
             this.querySelector('i').classList.add('fa-heart');
+            showToast('✅ Товар добавлен в избранные!', 'success');
           } else if (data.status === 'removed') {
             this.querySelector('i').classList.remove('fa-heart');
             this.querySelector('i').classList.add('fa-heart-o');
+            showToast('❌ Товар удалён из избранных.', 'success');
           }
 
           updateFavoriteCount();
@@ -72,5 +74,27 @@ document.addEventListener('DOMContentLoaded', function () {
           counter.textContent = data.count;
         }
       });
+  }
+
+  function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `alert alert-${type}`;
+    toast.style.marginBottom = '10px';
+    toast.style.borderRadius = '5px';
+    toast.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.transition = 'opacity 0.5s ease';
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        container.removeChild(toast);
+      }, 500);
+    }, 2000);
   }
 });
