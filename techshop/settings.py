@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "favorites.apps.FavoritesConfig",
     "carts.apps.CartsConfig",
+    "newsletters.apps.NewslettersConfig",
 ]
 
 MIDDLEWARE = [
@@ -93,3 +94,12 @@ LOGIN_REDIRECT_URL = "store:index"
 LOGOUT_REDIRECT_URL = "store:index"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.yandex.by"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "daniilrazlivanov@yandex.by"
+EMAIL_HOST_PASSWORD = "atabmoriwilmbnpe"
+DEFAULT_FROM_EMAIL = "daniilrazlivanov@yandex.by"
