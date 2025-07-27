@@ -11,14 +11,18 @@
     <h2 class="text-center" style="margin-bottom: 30px; font-weight: 600;">Вход в аккаунт</h2>
     <form method="post" novalidate>
       {% csrf_token %}
-      
+
+      {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {% for error in form.non_field_errors %}
+        <p class="mb-0">{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
       {% for field in form %}
         <div class="form-group {% if field.errors %}has-error{% endif %}">
           {{ field.label_tag }}
           {{ field }}
-          {% for error in field.errors %}
-            <span class="help-block">{{ error }}</span>
-          {% endfor %}
         </div>
       {% endfor %}
       
