@@ -8,6 +8,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN = "http://localhost:8000"
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

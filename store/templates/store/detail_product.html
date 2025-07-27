@@ -28,7 +28,11 @@
       <!-- Product main img -->
       <div class="col-md-5 col-md-push-2">
         <div class="product-preview">
+          {% if product.image %}
           <img src="{{ product.image.url }}" alt="" />
+          {% else %}
+          <img src="{% static "img/empty_image.jpg" %}" alt="" />
+          {% endif %}
         </div>
       </div>
       <!-- /Product main img -->
@@ -36,7 +40,11 @@
       <!-- Product thumb imgs -->
       <div class="col-md-2 col-md-pull-5">
         <div class="product-preview">
+          {% if product.image %}
           <img src="{{ product.image.url }}" alt="" />
+          {% else %}
+          <img src="{% static "img/empty_image.jpg" %}" alt="" />
+          {% endif %}
         </div>
       </div>
       <!-- /Product thumb imgs -->
