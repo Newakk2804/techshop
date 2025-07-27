@@ -105,3 +105,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "daniilrazlivanov@yandex.by"
 EMAIL_HOST_PASSWORD = "atabmoriwilmbnpe"
 DEFAULT_FROM_EMAIL = "daniilrazlivanov@yandex.by"
+
+
+CELERY_BROKER_URL = "redis://localhost:6379/1"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"

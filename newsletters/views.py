@@ -1,7 +1,6 @@
 from django.http import JsonResponse
-from django.core.mail import send_mail
-from django.conf import settings
 from .models import Subscriber
+from .tasks import send_subscription_email
 import json
 
 
@@ -22,13 +21,7 @@ def subscribe(request):
 
         Subscriber.objects.create(email=email)
 
-        send_mail(
-            subject="Вы успешно подписались на рассылку!",
-            message="Спасибо за подписку на наши новости. Мы будем держать вас в курсе!",
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[email],
-            fail_silently=True,
-        )
+        send_subscription_email.delay(email)
 
         return JsonResponse({"success": True})
 
