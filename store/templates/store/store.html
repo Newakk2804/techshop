@@ -1,4 +1,4 @@
-{% extends "store/base.html" %} {% load static %} {% load category_tags %} {% block main %}
+{% extends "store/base.html" %} {% load static %} {% load query_transform %} {% load category_tags %} {% block main %}
 <!-- SECTION -->
 <div class="section">
   <!-- container -->
@@ -10,6 +10,14 @@
         <!-- aside Widget -->
         <form id="filter-form">
           <div class="aside">
+            <h3 class="aside-title">Поиск</h3>
+            <input
+              type="text"
+              name="q"
+              placeholder="Поиск"
+              value="{{ request.GET.q|default:'' }}"
+              class="form-control"
+            />
             <h3 class="aside-title">Категории</h3>
             <div class="checkbox-filter">
               {% get_all_categories as categories %} {% for category in categories %}
@@ -99,17 +107,38 @@
         <!-- /store products -->
 
         <!-- store bottom filter -->
-        <div class="store-filter clearfix">
-          <ul class="store-pagination">
-            <li class="active">1</li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
-            </li>
-          </ul>
+        <div id="pagination">
+          {% include "store/components/_pagination.html" %}
         </div>
+
+        {% comment %} <ul class="store-pagination">
+          {% if page_obj.has_previous %}
+            <li>
+              <a href="?{% query_transform request page=page_obj.previous_page_number %}">
+                <i class="fa fa-angle-left"></i>
+              </a>
+            </li>
+          {% endif %}
+        
+          {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+              <li class="active">{{ num }}</li>
+            {% elif num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+              <li>
+                <a href="?{% query_transform request page=num %}">{{ num }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        
+          {% if page_obj.has_next %}
+            <li>
+              <a href="?{% query_transform request page=page_obj.next_page_number %}">
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+          {% endif %}
+        </ul> {% endcomment %}
+        
         <!-- /store bottom filter -->
       </div>
       <!-- /STORE -->

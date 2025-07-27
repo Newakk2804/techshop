@@ -42,7 +42,7 @@
       <!-- row -->
       <div class="row">
         <!-- LOGO -->
-        <div class="col-md-3">
+        <div class="col-md-8">
           <div class="header-logo">
             <a href="{% url "store:index" %}" class="logo">
               <img src="{% static "img/logo.png" %}" alt="" />
@@ -50,17 +50,6 @@
           </div>
         </div>
         <!-- /LOGO -->
-
-        <!-- SEARCH BAR -->
-        <div class="col-md-5">
-          <div class="header-search">
-            <form method="get" action="{% url "store:products" %}">
-              <input class="input" name="q" placeholder="Поиск" value="{{ request.GET.q|default:'' }}" />
-              <button type="submit" class="search-btn">Поиск</button>
-            </form>
-          </div>
-        </div>
-        <!-- /SEARCH BAR -->
 
         {% if request.user.is_authenticated %}
         <!-- ACCOUNT -->
