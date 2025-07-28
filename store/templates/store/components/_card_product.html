@@ -1,5 +1,8 @@
 {% load static %}
+
 {% load favorites_tags %}
+{% load star_rating %} 
+
 <!-- product -->
 <div class="product" id="favorite-product-{{ product.id }}">
   <div class="product-img">
@@ -23,11 +26,12 @@
     <h4 class="product-price">{{ product.final_price }} BYN</h4>
     {% endif %}
     <div class="product-rating">
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
+      {% for _ in product.rating|filled_stars %}
+        <i class="fa fa-star"></i>
+      {% endfor %}
+      {% for _ in product.rating|empty_stars %}
+        <i class="fa fa-star-o empty"></i>
+      {% endfor %}
     </div>
     <div class="product-btns">
       <a href="#" class="quick-view">
