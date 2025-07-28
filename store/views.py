@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from .models import Brand, Product
-from .utils import paginatore_objects
+from reviews.models import Review
+from store.models import Brand, Product
+from store.utils import paginatore_objects
+from reviews.forms import ReviewForm
 
 
 def index(request):
@@ -61,7 +63,9 @@ def product_filter_ajax(request):
             products = products.filter(price__lte=price_max)
 
         if query:
-            products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+            products = products.filter(
+                Q(name__icontains=query) | Q(description__icontains=query)
+            )
 
         page_obj = paginatore_objects(request, products, per_page=12)
 
@@ -75,10 +79,12 @@ def product_filter_ajax(request):
         html_products = render_to_string("store/components/_product_list.html", context)
         html_pagination = render_to_string("store/components/_pagination.html", context)
 
-        return JsonResponse({
-            "products_html": html_products,
-            "pagination_html": html_pagination,
-        })
+        return JsonResponse(
+            {
+                "products_html": html_products,
+                "pagination_html": html_pagination,
+            }
+        )
 
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
@@ -89,11 +95,20 @@ def detail_product(request, product_slug):
     related_products = Product.objects.filter(category__name=product.category).exclude(
         name=product.name
     )[:4]
-    print(related_products)
-    print(product.category)
+    form = ReviewForm(user=request.user, product=product)
+    reviews = Review.objects.filter(product=product).order_by("-created_at")
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST, user=request.user, product=product)
+        if form.is_valid():
+            form.save()
+            return redirect(request.path)
+
     context = {
         "product": product,
         "related_products": related_products,
+        "reviews": reviews,
+        "form": form,
     }
 
     return render(request, "store/detail_product.html", context)
