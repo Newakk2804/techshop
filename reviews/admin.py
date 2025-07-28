@@ -6,7 +6,7 @@ from reviews.models import Review
 class ReviewInline(admin.TabularInline):
     model = Review
     extra = 0
-    readonly_fields = ("user", "created_at")
+    readonly_fields = ("user", "created_at", "rating")
     fields = ("user", "rating", "comment", "created_at")
     can_delete = True
     show_change_link = True
@@ -26,7 +26,7 @@ class ReviewAdmin(admin.ModelAdmin):
     )
     list_filter = ("rating", "created_at", "product")
     search_fields = ("user__username", "product__name", "comment")
-    readonly_fields = ("created_at",)
+    readonly_fields = ("created_at", "rating")
     autocomplete_fields = ("product", "user")
     ordering = ("created_at",)
 
@@ -51,7 +51,7 @@ class ReviewAdmin(admin.ModelAdmin):
     user_link.admin_order_field = "user"
 
     def star_rating(self, obj):
-        return format_html("★" + str(obj.rating) + "☆" * (5 - obj.rating))
+        return format_html("★" + str(obj.rating))
 
     star_rating.short_description = "Рейтинг"
 

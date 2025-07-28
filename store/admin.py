@@ -52,10 +52,11 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "rating",
+        "review_count",
         "final_price_display",
         "image_preview",
     )
-    list_editable = ("price", "discount", "color", "rating")
     ordering = ("-created_at",)
     date_hierarchy = "created_at"
     save_on_top = True
