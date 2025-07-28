@@ -50,7 +50,10 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     discount = models.PositiveIntegerField(default=0, verbose_name="Скидка в %")
     color = models.CharField(max_length=20, choices=COLOR_CHOICES, verbose_name="Цвет")
-    rating = models.FloatField(default=0.0)
+    rating = models.FloatField(default=0.0, verbose_name="Рейтинг")
+    review_count = models.PositiveSmallIntegerField(
+        default=0, verbose_name="Количество отзывов"
+    )
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,

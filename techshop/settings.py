@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     "favorites.apps.FavoritesConfig",
     "carts.apps.CartsConfig",
     "newsletters.apps.NewslettersConfig",
+    "reviews.apps.ReviewsConfig",
 ]
 
 MIDDLEWARE = [

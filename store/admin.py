@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Product, Brand
-
+from store.models import Category, Product, Brand
+from reviews.admin import ReviewInline
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -42,6 +42,7 @@ class ProductAdmin(admin.ModelAdmin):
         "final_price_display",
         "color",
         "rating",
+        "review_count",
         "created_at",
         "image_preview",
     )
@@ -78,6 +79,7 @@ class ProductAdmin(admin.ModelAdmin):
         ("Характеристики", {"fields": ("color", "rating")}),
         ("Служебное", {"fields": ("created_at", "updated_at")}),
     )
+    inlines = [ReviewInline]
 
     def final_price_display(self, obj):
         return f"{obj.final_price():.2f} BYN"

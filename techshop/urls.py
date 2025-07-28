@@ -10,6 +10,7 @@ urlpatterns = [
     path("favorite/", include("favorites.urls", namespace="favorite")),
     path("cart/", include("carts.urls", namespace="cart")),
     path("newsletters/", include("newsletters.urls", namespace="newsletters")),
+    path("reviews/", include("reviews.urls", namespace="reviews")),
 ]
 
 if settings.DEBUG:
