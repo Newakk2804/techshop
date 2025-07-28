@@ -110,35 +110,6 @@
         <div id="pagination">
           {% include "store/components/_pagination.html" %}
         </div>
-
-        {% comment %} <ul class="store-pagination">
-          {% if page_obj.has_previous %}
-            <li>
-              <a href="?{% query_transform request page=page_obj.previous_page_number %}">
-                <i class="fa fa-angle-left"></i>
-              </a>
-            </li>
-          {% endif %}
-        
-          {% for num in page_obj.paginator.page_range %}
-            {% if num == page_obj.number %}
-              <li class="active">{{ num }}</li>
-            {% elif num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
-              <li>
-                <a href="?{% query_transform request page=num %}">{{ num }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-        
-          {% if page_obj.has_next %}
-            <li>
-              <a href="?{% query_transform request page=page_obj.next_page_number %}">
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-          {% endif %}
-        </ul> {% endcomment %}
-        
         <!-- /store bottom filter -->
       </div>
       <!-- /STORE -->
