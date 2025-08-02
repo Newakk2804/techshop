@@ -1,15 +1,9 @@
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', () => {
   function fetchFilteredProducts(newPage = null) {
-    const params = new URLSearchParams();
+    const form = document.getElementById('filter-form');
+    if (!form) return;
 
-    // Все данные формы, включая q из поля поиска
-    $('#filter-form')
-      .serializeArray()
-      .forEach(({ name, value }) => {
-        if (value) {
-          params.append(name, value);
-        }
-      });
+    const params = new URLSearchParams(new FormData(form));
 
     if (newPage !== null) {
       params.set('page', newPage);
@@ -17,42 +11,57 @@ $(document).ready(function () {
       params.delete('page');
     }
 
-    const queryString = params.toString();
+    fetch(`/products/ajax/?${params.toString()}`, {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const productList = document.getElementById('product-list');
+        const pagination = document.getElementById('pagination');
 
-    $.ajax({
-      url: '/products/ajax/',
-      type: 'GET',
-      data: queryString,
-      success: function (response) {
-        $('#product-list').html(response.products_html);
-        $('#pagination').html(response.pagination_html);
+        if (productList && data.products_html) {
+          productList.innerHTML = data.products_html;
+        }
 
-        const newUrl = window.location.pathname + '?' + queryString;
+        if (pagination && data.pagination_html) {
+          pagination.innerHTML = data.pagination_html;
+        }
+
+        // Важно: повторная инициализация кнопок
+        window.ProductInteractions.initCartButtons();
+        window.ProductInteractions.initWishlistButtons();
+
+        // Обновляем URL
+        const newUrl = window.location.pathname + '?' + params.toString();
         window.history.pushState(null, '', newUrl);
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.error('AJAX error:', textStatus, errorThrown);
-        console.error('Response text:', jqXHR.responseText);
-        alert('Ошибка при загрузке товаров. Проверьте консоль для деталей.');
-      },
+      })
+      .catch((err) => {
+        console.error('Ошибка при фильтрации:', err);
+        alert('Ошибка загрузки товаров.');
+      });
+  }
+
+  const filterForm = document.getElementById('filter-form');
+  if (filterForm) {
+    filterForm.addEventListener('input', () => fetchFilteredProducts());
+  }
+
+  const resetBtn = document.getElementById('reset-filters');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      filterForm.reset();
+      fetchFilteredProducts();
     });
   }
 
-  $('#filter-form input').on('change input', function () {
-    fetchFilteredProducts();
-  });
+  // пагинация
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('.store-pagination a');
+    if (!target) return;
 
-  $('#reset-filters').on('click', function () {
-    $('#filter-form input[type=checkbox]').prop('checked', false);
-    $('#filter-form input[type=number]').val('');
-    $('#filter-form input[type=text]').val('');
-    fetchFilteredProducts();
-  });
-
-  $(document).on('click', '.store-pagination a', function (e) {
     e.preventDefault();
-    const url = new URL($(this).attr('href'), window.location.origin);
-    const page = url.searchParams.get("page");
+    const url = new URL(target.href);
+    const page = url.searchParams.get('page');
     fetchFilteredProducts(page);
   });
 });
