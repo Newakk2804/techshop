@@ -21,7 +21,7 @@ class Order(models.Model):
     )
     full_name = models.CharField(max_length=255, verbose_name="ФИО")
     email = models.EmailField(verbose_name="Email")
-    phone = models.CharField(max_length=10, verbose_name="Телефон")
+    phone = models.CharField(max_length=25, verbose_name="Телефон")
     address = models.TextField(verbose_name="Адрес доставки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -71,4 +71,6 @@ class OrderItem(models.Model):
         return f"{self.product.name} x {self.quantity}"
 
     def get_cost(self):
+        if self.price is None or self.quantity is None:
+            return 0
         return self.price * self.quantity
