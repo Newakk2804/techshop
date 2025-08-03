@@ -34,7 +34,7 @@
       Нет аккаунта? <a href="{% url 'accounts:register' %}">Зарегистрироваться</a>
     </p>
     <p class="text-center" style="margin-top: 20px;">
-      Забыли пароль? <a href="#">Восстановить пароль</a>
+      Забыли пароль? <a href="{% url "accounts:password_reset" %}">Восстановить пароль</a>
     </p>
   </div>
 </div>
