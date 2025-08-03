@@ -2,7 +2,6 @@ from django.contrib import admin
 from orders.models import Order, OrderItem
 
 
-@admin.register(OrderItem)
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
