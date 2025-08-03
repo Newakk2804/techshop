@@ -1,0 +1,91 @@
+{% extends "store/base.html" %}
+{% block main %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary">← Назад</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<div class="container content-cart" style="margin-top: 50px; margin-bottom: 80px;">
+  <h3 class="text-center" style="margin-bottom: 30px;">Оформление заказа</h3>
+
+  <div class="row">
+    <!-- Форма заказа -->
+    <div class="col-md-5">
+      <div style="
+        background: linear-gradient(135deg, #f9f9f9, #ffffff);
+        border-radius: 20px;
+        padding: 30px 35px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        margin-top: 10px;
+      ">
+        <h4 class="text-center" style="margin-bottom: 25px;">Данные для оформления</h4>
+
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <div class="text-danger small">{{ field.errors|striptags }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <hr>
+          <p class="mb-1"><strong>Всего товаров:</strong> {{ total_quantity }}</p>
+          <p class="mb-3"><strong>Сумма к оплате:</strong> <span style="color: #28a745;">{{ total_price }} BYN</span></p>
+
+          <button type="submit" class="btn btn-success btn-lg btn-block" style="border-radius: 30px; font-weight: 600;">Оформить заказ</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Список товаров -->
+    <div class="col-md-7">
+      <div class="table-responsive" style="font-size: 14px;">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Товар</th>
+              <th class="text-center" style="width: 100px;">Цена</th>
+              <th class="text-center" style="width: 100px;">Кол-во</th>
+              <th class="text-center" style="width: 120px;">Сумма</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+              <tr class="cart-item-row">
+                <td>
+                  <div class="media">
+                    <div class="media-left" style="margin-right: 10px;">
+                      <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="media-object" style="width: 60px;" />
+                    </div>
+                    <div class="media-body">
+                      <strong>{{ item.product.name }}</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">{{ item.product.final_price }} BYN</td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-center">{{ item.get_total_price }} BYN</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
