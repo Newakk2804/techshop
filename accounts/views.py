@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
-from .forms import CustomAuthenticationForm, CustomUserCreationForm
+from django.urls import reverse_lazy
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomPasswordResetForm, CustomPasswordConfirmFrom
 
 
 def register_view(request):
@@ -40,3 +42,20 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("store:index")
+
+
+class CustomPasswordResetView(PasswordResetView):
+    form_class = CustomPasswordResetForm
+    template_name = "accounts/reset_pwd/password_reset_form.html"
+    success_url = reverse_lazy("accounts:password_reset_done")
+
+class CustomPassowrdResetDoneView(PasswordResetDoneView):
+    template_name = "accounts/reset_pwd/password_reset_done.html"
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = CustomPasswordConfirmFrom
+    template_name = "accounts/reset_pwd/password_reset_confirm.html"
+    success_url = reverse_lazy("accounts:password_reset_complete")
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "accounts/reset_pwd/password_reset_complete.html"
