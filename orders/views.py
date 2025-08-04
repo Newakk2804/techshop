@@ -28,7 +28,7 @@ def order_create(request):
 
             cart_items.delete()
 
-            return redirect("orders:order_success", order_id=order.id)
+            return redirect("payments:start_payment", order_id=order.id)
     else:
         form = OrderCreateForm()
 
