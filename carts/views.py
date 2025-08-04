@@ -24,7 +24,10 @@ def cart_view(request):
 @require_POST
 @login_required
 def add_to_cart(request):
-    data = json.loads(request.body)
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
     product_it = data.get("product_id")
     quantity = data.get("quantity", 1)
 
