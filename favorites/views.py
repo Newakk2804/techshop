@@ -7,6 +7,7 @@ from .models import Favorite
 from store.models import Product
 
 
+@login_required
 def favorite_list_view(request):
     favorites = Favorite.objects.select_related("product").filter(user=request.user)
     context = {
