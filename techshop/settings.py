@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "newsletters.apps.NewslettersConfig",
     "reviews.apps.ReviewsConfig",
     "orders.apps.OrdersConfig",
+    "payments.apps.PaymentsConfig",
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,8 @@ CELERY_BROKER_URL = "redis://localhost:6379/1"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
+
+PAYPAL_CLIENT_ID = "your_paypal_client_id_here"
+PAYPAL_CLIENT_SECRET = "your_paypal_client_secret_here"
+PAYPAL_MODE = "sandbox"
+PAYPAL_CURRENCY = "BYN"
