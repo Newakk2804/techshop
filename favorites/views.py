@@ -20,7 +20,10 @@ def favorite_list_view(request):
 @require_POST
 @login_required
 def toggle_wishlist(request):
-    data = json.loads(request.body)
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "invalid JSON"}, status=400)
     product_id = data.get("product_id")
 
     try:
