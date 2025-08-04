@@ -33,7 +33,7 @@ def send_new_product_email_task(product_slug):
         subject=f"🆕 Новый товар: {product.name}",
         body=html_content,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        to=subscribers,
+        to=list(subscribers),
     )
 
     email.content_subtype = "html"
