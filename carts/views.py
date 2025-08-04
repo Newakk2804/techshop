@@ -36,11 +36,11 @@ def add_to_cart(request):
     cart_item, created = CartItem.objects.get_or_create(
         user=request.user,
         product=product,
-        defaults={"quantity": quantity},
+        defaults={"quantity": 1 if quantity <= 0 else quantity},
     )
 
     if not created:
-        cart_item.quantity += quantity
+        cart_item.quantity += 1 if quantity <= 0 else quantity
         cart_item.save()
 
     return JsonResponse({"success": True})
