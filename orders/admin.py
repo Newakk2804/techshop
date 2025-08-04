@@ -29,12 +29,19 @@ class OrderAdmin(admin.ModelAdmin):
     )
     list_filter = ("status", "paid", "created_at")
     search_fields = ("full_name", "email", "phone", "id")
-    readonly_fields = ("created_at", "updated_at", "payment_id")
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+        "payment_id",
+        "get_total_cost",
+        "get_total_quantity",
+    )
     inlines = [OrderItemInline]
     fieldsets = (
         (None, {"fields": ("user", "full_name", "email", "phone", "address")}),
         ("Статус и оплата", {"fields": ("status", "paid", "payment_id")}),
         ("Время", {"fields": ("created_at", "updated_at")}),
+        ("Итоги заказа", {"fields": ("get_total_quantity", "get_total_cost")}),
     )
 
     def get_total_cost(self, obj):
