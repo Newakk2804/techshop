@@ -6,6 +6,7 @@ from django.conf import settings
 from store.models import Product, Category
 from reviews.models import Review
 from newsletters.tasks import send_new_product_email_task
+from django.core.cache import cache
 
 
 @receiver(post_save, sender=Product)
@@ -38,6 +39,12 @@ def update_product_rating(sender, instance, **kwargs):
     reviews = product.reviews.all()
     agg = reviews.aggregate(avg=Avg("rating"), count=Count("id"))
 
-    product.rating = round(agg['avg'] or 0,1)
+    product.rating = round(agg["avg"] or 0, 1)
     product.review_count = agg["count"]
     product.save()
+
+
+@receiver([post_save, post_delete], sender=Product)
+def clear_product_cache(sender, instance, **kwargs):
+    cache_key = f"product_detail_{instance.slug}"
+    cache.delete(cache_key)

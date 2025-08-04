@@ -6,6 +6,7 @@ from reviews.models import Review
 from store.models import Brand, Product
 from store.utils import paginatore_objects
 from reviews.forms import ReviewForm
+from django.core.cache import cache
 
 
 def index(request):
@@ -91,7 +92,11 @@ def product_filter_ajax(request):
 
 
 def detail_product(request, product_slug):
-    product = Product.objects.get(slug=product_slug)
+    cache_key = f"product_detail_{product_slug}"
+    product = cache.get(cache_key)
+    if not product:
+        product = Product.objects.get(slug=product_slug)
+        cache.set(cache_key, product, 60 * 10)
     related_products = Product.objects.filter(category__name=product.category).exclude(
         name=product.name
     )[:4]
