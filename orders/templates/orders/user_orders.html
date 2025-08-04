@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+
+{% block main %}
+<div class="container" style="min-height: 80vh; padding-top: 40px; padding-bottom: 40px;">
+  <h2 class="text-center" style="font-weight: 700; margin-bottom: 35px;">Мои заказы</h2>
+  {% if orders %}
+    <div class="row">
+      {% for order in orders %}
+      <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default" style="border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 30px;">
+          <div class="panel-body">
+            <div class="clearfix" style="margin-bottom: 10px;">
+              <span class="label label-{% if order.paid %}success{% else %}warning{% endif %} pull-left" style="font-size: 13px;">
+                {% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}
+              </span>
+              <span class="text-muted pull-right" style="font-size: 13px;">{{ order.created_at|date:"d.m.Y H:i" }}</span>
+            </div>
+            <h4 style="font-weight: 600; margin-top: 10px;">Заказ №{{ order.id }}</h4>
+            <div style="margin-bottom: 8px;">
+              <span class="label label-{% if order.status == 'completed' %}success{% elif order.status == 'canceled' %}danger{% else %}default{% endif %}">
+                {{ order.get_status_display }}
+              </span>
+            </div>
+            <div><strong>Сумма:</strong> {{ order.get_total_cost }} BYN</div>
+            <div><strong>Товаров:</strong> {{ order.get_total_quantity }}</div>
+            <div class="text-right" style="margin-top: 15px;">
+              <a href="{% url 'orders:user_order_detail' order.id %}" class="btn btn-danger" style="border-radius: 25px; font-weight: 600; min-width: 120px;">
+                Детали заказа
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center" style="margin-top: 40px;">
+      У вас пока нет заказов.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

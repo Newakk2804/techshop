@@ -1,0 +1,80 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block main %}
+<div class="container" style="max-width: 900px; min-height: 80vh; padding-top: 40px; padding-bottom: 40px;">
+  <div class="panel panel-default" style="border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+    <div class="panel-body">
+      <div class="text-center" style="margin-bottom: 25px;">
+        <h3 style="font-weight: 700; margin-bottom: 5px;">Заказ №{{ order.id }}</h3>
+        <span class="text-muted" style="font-size: 15px;">от {{ order.created_at|date:"d.m.Y H:i" }}</span>
+      </div>
+      <div class="row" style="margin-bottom: 15px;">
+        <div class="col-xs-6">
+          <div><strong>Статус:</strong>
+            <span class="label label-{% if order.status == 'completed' %}success{% elif order.status == 'canceled' %}danger{% else %}default{% endif %}">
+              {{ order.get_status_display }}
+            </span>
+          </div>
+          <div><strong>Оплата:</strong>
+            <span class="label label-{% if order.paid %}success{% else %}warning{% endif %}">
+              {% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-6 text-right">
+          <div><strong>Сумма заказа:</strong> {{ order.get_total_cost }} BYN</div>
+          <div><strong>Товаров:</strong> {{ order.get_total_quantity }}</div>
+        </div>
+      </div>
+      <hr>
+      <div style="margin-bottom: 15px;">
+        <strong>Данные получателя:</strong><br>
+        {{ order.full_name }}<br>
+        {{ order.phone }}<br>
+        {{ order.email }}<br>
+        {{ order.address }}
+      </div>
+      <hr>
+      <div>
+        <strong>Товары в заказе:</strong>
+        <div class="table-responsive" style="margin-top: 10px;">
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th style="width: 80px;">Изображение</th>
+                <th>Товар</th>
+                <th>Цена</th>
+                <th>Кол-во</th>
+                <th>Сумма</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in order.items.all %}
+              <tr>
+                <td>
+                  {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="max-width: 70px; max-height: 70px; border-radius: 8px;">
+                  {% else %}
+                    <img src="{% static 'store/img/empty_image.jpg' %}" alt="Нет фото" style="max-width: 70px; max-height: 70px; border-radius: 8px;">
+                  {% endif %}
+                </td>
+                <td style="vertical-align: middle;">{{ item.product.name }}</td>
+                <td style="vertical-align: middle;">{{ item.price }} BYN</td>
+                <td style="vertical-align: middle;">{{ item.quantity }}</td>
+                <td style="vertical-align: middle;">{{ item.get_cost }} BYN</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 30px;">
+        <a href="{% url 'orders:user_orders' %}" class="btn btn-danger" style="border-radius: 25px; font-weight: 600; min-width: 180px;">
+          К списку заказов
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
