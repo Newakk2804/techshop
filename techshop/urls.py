@@ -12,6 +12,7 @@ urlpatterns = [
     path("newsletters/", include("newsletters.urls", namespace="newsletters")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
     path("orders/", include("orders.urls", namespace="orders")),
+    path("payments/", include("payments.urls", namespace="payments")),
 ]
 
 if settings.DEBUG:
