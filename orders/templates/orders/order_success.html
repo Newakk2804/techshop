@@ -1,5 +1,17 @@
 {% extends "store/base.html" %}
+
 {% block main %}
-  <h2>Спасибо за заказ!</h2>
-  <p>Ваш заказ №{{ order_id }} успешно оформлен.</p>
+<div class="container" style="width: 600px; margin-top: 100px; margin-bottom: 80px;">
+  <div class="well" style="
+    background: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 30px 100px;
+  ">
+    <h2 class="text-center text-success mb-4" style="font-weight: 600;">Спасибо за заказ!</h2>
+    <p class="text-center">Ваш заказ <strong>№{{ order_id }}</strong> успешно оформлен.</p>
+    <a href="{% url 'store:index' %}" class="btn btn-danger btn-block mt-3" style="border-radius: 25px; font-weight: 600;">Вернуться в магазин</a>
+  </div>
+</div>
 {% endblock %}
