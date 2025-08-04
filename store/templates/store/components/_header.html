@@ -77,10 +77,10 @@
 
             <!-- Orders -->
             <div>
-              <a href="#">
+              <a href="{% url 'orders:user_orders' %}">
                 <i class="fa fa-list"></i>
                 <span>Заказы</span>
-                <div class="qty" id="order-count">0</div>
+                <div class="qty" id="order-count">{{ user_orders_count|default:0 }}</div>
               </a>
             </div>
             <!-- /Orders -->
