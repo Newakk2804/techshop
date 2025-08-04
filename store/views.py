@@ -98,12 +98,6 @@ def detail_product(request, product_slug):
     form = ReviewForm(user=request.user, product=product)
     reviews = Review.objects.filter(product=product).order_by("-created_at")
 
-    if request.method == "POST":
-        form = ReviewForm(request.POST, user=request.user, product=product)
-        if form.is_valid():
-            form.save()
-            return redirect(request.path)
-
     context = {
         "product": product,
         "related_products": related_products,

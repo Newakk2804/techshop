@@ -1,9 +1,9 @@
 from django.urls import path
-# from .views import 
+from .views import add_review
 
 
 app_name = "reviews"
 
 urlpatterns = [
-    # path("subscribe/", subscribe, name="subscribe"),
+    path("add/<slug:product_slug>/", add_review, name="add_review"),
 ]

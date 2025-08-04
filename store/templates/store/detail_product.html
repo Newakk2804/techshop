@@ -189,7 +189,7 @@
                 <div class="col-md-3">
                   <div id="review-form">
                     {% if user.is_authenticated %}
-                    <form method="POST" class="review-form">
+                    <form action={% url 'reviews:add_review' product.slug %} method="POST" class="review-form">
                       {% csrf_token %}
 
                       {% if form.non_field_errors %}
