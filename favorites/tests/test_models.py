@@ -1,10 +1,6 @@
 import pytest
-from decimal import Decimal
-from django.test import TestCase
 from favorites.models import Favorite
-from accounts.models import CustomUser
-from store.models import Brand, Category, Product
-from favorites.tests.create_obj import (
+from techshop.tests.create_objects_for_tests import (
     create_user,
     create_brand,
     create_category,

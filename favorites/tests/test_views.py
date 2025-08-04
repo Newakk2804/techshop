@@ -1,12 +1,9 @@
-from calendar import c
 import pytest
 import json
 from decimal import Decimal
 from django.urls import reverse
 from favorites.models import Favorite
-from store.models import Brand, Category, Product
-from accounts.models import CustomUser
-from favorites.tests.create_obj import (
+from techshop.tests.create_objects_for_tests import (
     create_user,
     create_brand,
     create_category,
