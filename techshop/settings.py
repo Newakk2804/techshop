@@ -1,14 +1,19 @@
 from pathlib import Path
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-s@1oa03pmcqdx(pl=+bc*h8kkh3dw@hp4n@_+)@gqg%48a4yfz"
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(BASE_DIR / ".env")
 
-DEBUG = True
 
-ALLOWED_HOSTS = []
+SECRET_KEY = env("SECRET_KEY")
 
-DOMAIN = "http://localhost:8000"
+DEBUG = env("DEBUG")
+
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+
+DOMAIN = env("DOMAIN")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -60,11 +65,11 @@ WSGI_APPLICATION = "techshop.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "techshop_db",
-        "USER": "postgres",
-        "PASSWORD": "1231",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
     }
 }
 
@@ -107,33 +112,29 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.yandex.by"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "daniilrazlivanov@yandex.by"
-EMAIL_HOST_PASSWORD = "atabmoriwilmbnpe"
-DEFAULT_FROM_EMAIL = "daniilrazlivanov@yandex.by"
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
 
-CELERY_BROKER_URL = "redis://localhost:6379/1"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 
-PAYPAL_CLIENT_ID = (
-    "Ac7M-9rB3HKvxw45ye-vD4_F7u-zSRg-aInEa2Qdn6pdz8NIqSibEG7Liu1dF8hofHVnY6vZdqec3qMh"
-)
-PAYPAL_CLIENT_SECRET = (
-    "EO6fzSC_sksF8MRcHobsS3QkENo18hGYDFXNQPH6M8h1ZMlgPsAmTEFWoDIZRBhD6NYRBSvGhptN4OVe"
-)
-PAYPAL_MODE = "sandbox"
-PAYPAL_CURRENCY = "USD"
+PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID")
+PAYPAL_CLIENT_SECRET = env("PAYPAL_CLIENT_SECRET")
+PAYPAL_MODE = env("PAYPAL_MODE")
+PAYPAL_CURRENCY = "PAYPAL_CURRENCY"
 
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/2",
+        "LOCATION": env("CACHE_LOCATION"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
