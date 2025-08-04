@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load static %}
 {% block main %}
   <!-- BREADCRUMB -->
   <div id="breadcrumb" class="section">
@@ -40,7 +41,11 @@
                 <td>
                   <div class="media">
                     <div class="media-left">
+                      {% if item.product.image %}
                       <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="media-object" style="width: 80px;" />
+                      {% else %}
+                      <img src="{% static 'img/empty_image.jpg' %}" alt="" class="media-object" style="width: 80px;">
+                      {% endif %}
                     </div>
                     <div class="media-body">
                       <h4 class="media-heading">{{ item.product.name }}</h4>
