@@ -115,7 +115,11 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 
-PAYPAL_CLIENT_ID = "your_paypal_client_id_here"
-PAYPAL_CLIENT_SECRET = "your_paypal_client_secret_here"
+PAYPAL_CLIENT_ID = (
+    "Ac7M-9rB3HKvxw45ye-vD4_F7u-zSRg-aInEa2Qdn6pdz8NIqSibEG7Liu1dF8hofHVnY6vZdqec3qMh"
+)
+PAYPAL_CLIENT_SECRET = (
+    "EO6fzSC_sksF8MRcHobsS3QkENo18hGYDFXNQPH6M8h1ZMlgPsAmTEFWoDIZRBhD6NYRBSvGhptN4OVe"
+)
 PAYPAL_MODE = "sandbox"
-PAYPAL_CURRENCY = "BYN"
+PAYPAL_CURRENCY = "USD"
