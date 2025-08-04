@@ -62,6 +62,10 @@ class Payment(models.Model):
         self.order.payment_id = self.payment_id
         self.order.save()
 
+    def mark_as_failed(self):
+        self.status = "failed"
+        self.save()
+
     def mark_as_cancelled(self):
         self.status = "cancelled"
         self.save()
