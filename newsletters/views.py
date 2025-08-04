@@ -6,8 +6,11 @@ import json
 
 def subscribe(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        email = data.get("email")
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "invalid json"}, status=400)
+        email = data.get("email", "").strip().lower()
 
         if not email:
             return JsonResponse(
