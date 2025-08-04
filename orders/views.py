@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from orders.models import Order, OrderItem
 from orders.forms import OrderCreateForm
 from carts.models import CartItem
@@ -46,3 +46,23 @@ def order_success(request, order_id):
     context = {"order_id": order_id}
 
     return render(request, "orders/order_success.html", context)
+
+
+@login_required
+def user_orders(request):
+    orders = Order.objects.filter(user=request.user).order_by("-created_at")
+    context = {
+        "orders": orders,
+    }
+
+    return render(request, "orders/user_orders.html", context)
+
+
+@login_required
+def user_order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    context = {
+        "order": order,
+    }
+
+    return render(request, "orders/user_order_detail.html", context)
