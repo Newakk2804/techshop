@@ -1,9 +1,28 @@
 {% extends "store/base.html" %}
 
 {% block main %}
-<div class="container" style="min-height: 80vh; padding-top: 40px; padding-bottom: 40px;">
-  <h2 class="text-center" style="font-weight: 700; margin-bottom: 35px;">Мои заказы</h2>
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary"> ← Назад </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<div class="container" style="min-height: 50vh;">
   {% if orders %}
+  <h2 class="text-center" style="font-weight: 700; margin-bottom: 35px;">Мои заказы</h2>
     <div class="row">
       {% for order in orders %}
       <div class="col-xs-12 col-sm-6">
@@ -34,9 +53,9 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="alert alert-info text-center" style="margin-top: 40px;">
-      У вас пока нет заказов.
-    </div>
+  <div class="text-center" style="padding: 28px 0">
+    <h4 class="text-muted">У вас пока нет заказов.</h4>
+  </div>
   {% endif %}
 </div>
 {% endblock %}
