@@ -20,10 +20,10 @@
     <h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
     {% if product.discount %}
     <h4 class="product-price">
-      {{ product.final_price }} BYN <del class="product-old-price">{{ product.price }} BYN</del>
+      {{ product.final_price }} $ <del class="product-old-price">{{ product.price }} $</del>
     </h4>
     {% else %}
-    <h4 class="product-price">{{ product.final_price }} BYN</h4>
+    <h4 class="product-price">{{ product.final_price }} $</h4>
     {% endif %}
     <div class="product-rating">
       {% for _ in product.rating|filled_stars %}

@@ -3,6 +3,7 @@ from django.utils.html import format_html
 from store.models import Category, Product, Brand
 from reviews.admin import ReviewInline
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "slug", "image_preview")
@@ -83,7 +84,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ReviewInline]
 
     def final_price_display(self, obj):
-        return f"{obj.final_price():.2f} BYN"
+        return f"{obj.final_price():.2f} $"
 
     final_price_display.short_description = "Цена со скидкой"
 
