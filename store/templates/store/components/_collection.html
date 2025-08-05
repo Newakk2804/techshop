@@ -9,6 +9,7 @@
       {% for category in categories %}
       <!-- shop -->
       <div class="col-md-3 col-xs-4">
+        <a href="{% url 'store:products' %}?category={{ category.id }}">
         <div class="shop">
           <div class="shop-img">
             {% if category.image %}
@@ -19,9 +20,9 @@
           </div>
           <div class="shop-body">
             <h3>{{ category.name }}<br /></h3>
-            <a href="{% url 'store:products' %}?category={{ category.id }}" class="cta-btn">Купить <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+      </a>
       </div>
       <!-- /shop -->
       {% endfor %}
